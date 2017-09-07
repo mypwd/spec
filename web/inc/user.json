@@ -1,0 +1,16 @@
+{
+	"user": [
+		{
+			"name":"nakho.ahn",
+			"id":"nako",
+			"password":"nako10",
+			"priv":7
+		},
+		{
+			"name":"sunho.kwon",
+			"id":"shkwon",
+			"password":"nako10",
+			"priv":7
+		}
+	]
+}
