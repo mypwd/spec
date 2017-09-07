@@ -201,7 +201,7 @@ class Udb:
 
 
 
-response_fmt = { 'info': {command:'', 'desc':''},'return':{'code':'','desc':''}, 'properties':''} 
+response_fmt = { 'info': {'command':'', 'desc':''},'return':{'code':'','desc':''}, 'properties':''} 
         
 class Protocol:
     def __init__(self, command_map):

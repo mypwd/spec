@@ -25,7 +25,8 @@ def bld_header():
 def bld_cookie(c):
     return '%s\r\n'%c
 
-MODEL_DB_PATH='db/param.db'
+SPEC_DB_PATH='/var/www/html/spec/cgi/db/spec.db'
+
 USER_FILE='inc/user.json'
 
 # define

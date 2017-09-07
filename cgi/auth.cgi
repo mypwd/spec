@@ -37,11 +37,12 @@ class Auth(Protocol):
         _map = {}
         _map['LoginRequest'] = ['LoginResponse', self.LoginRequest]
         _map['LogoutRequest'] = ['LogoutResponse', self.LogoutRequest]
+        _map['LogPingRequest'] = ['LogPingResponse', self.LogPingRequest]
         return _map
 
     def LoginRequest(self):
         if self.sess.has_session() == False:
-            if (self.is_valid_password(self.properties['id'],self.properties['password']) == False) :
+            if (self.is_valid_password(self.properties['userid'],self.properties['password']) == False) :
                 self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_AUTH_FAIL, "fail")
                 return
             else:
@@ -59,6 +60,13 @@ class Auth(Protocol):
         self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_SUCC, "success")
         self.system_log('로그아웃 되었습니다')
         return
+
+    def LogPingRequest(self):
+        if self.sess.has_session() == True:
+            self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_AUTH_ALEADY_LOGIN, "aleady login")
+        else:
+            self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_AUTH_FAIL, "not logged in")
+        return
     def is_valid_password(self, id,pw):
         conf = self.load_json_file(USER_FILE)
         for u in conf['user']:
@@ -69,7 +77,8 @@ class Auth(Protocol):
                     return False
         return False
     def system_log(self, log):
-        db = Udb(FACE_DB_PATH)
+        
+        db = Udb(SPEC_DB_PATH)
         time_str = strftime('%Y-%m-%d %I:%M:%S', localtime())
         
         query = "insert into system_log (logtime, log) values('%s', '%s')"%(time_str, log)

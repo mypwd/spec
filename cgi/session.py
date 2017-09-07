@@ -16,7 +16,7 @@ class Session(object):
         string_cookie = os.environ.get('HTTP_COOKIE', '')
         self.cookie = Cookie.SimpleCookie()
         self.cookie.load(string_cookie)
-        self.session_dir = '/tmp/'
+        self.session_dir = '/var/www/html/'
         if not os.path.exists(self.session_dir):
             os.mkdir(self.session_dir, 0777)
 
