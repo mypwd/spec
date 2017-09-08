@@ -76,3 +76,15 @@ function normal_call( target, data )
 	);
 	return request;
 }
+
+function make_link_button(target, name)
+{
+	var code;
+	code = '<a class="btn btn-primary" href="' + target + '" role="button">'+name + '</a>';
+	return code;
+}
+
+function append_left(code)
+{
+	$('#left_frame').append(code);
+}

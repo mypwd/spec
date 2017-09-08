@@ -27,7 +27,7 @@ class Auth(Protocol):
         self.command_map[self.command][1]()
         
     def request_add_custom_remocon(self):
-        self.response = self.make_custom_response(self.get_response_command(), RESPONSE_CODE_SUCC, "success", prop)
+        self.response = self.make_custom_response( RESPONSE_CODE_SUCC, "success", prop)
         return
     def set_session(self, s):
         self.sess = s
@@ -43,13 +43,13 @@ class Auth(Protocol):
     def LoginRequest(self):
         if self.sess.has_session() == False:
             if (self.is_valid_password(self.properties['userid'],self.properties['password']) == False) :
-                self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_AUTH_FAIL, "fail")
+                self.response = self.make_simple_response( RESPONSE_CODE_AUTH_FAIL, "fail")
                 return
             else:
                 self.sess.set_new_cookie()
                 self.sess.save_user_information()
 
-        self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_SUCC, "succ")
+        self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "succ")
         self.auth_succ = 1
         self.system_log('로그인 되었습니다')
         return    
@@ -57,15 +57,15 @@ class Auth(Protocol):
     def LogoutRequest(self):
         if self.sess.has_session() == True:
             self.sess.delete_session()
-        self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_SUCC, "success")
+        self.response = self.make_simple_response(RESPONSE_CODE_SUCC, "success")
         self.system_log('로그아웃 되었습니다')
         return
 
     def LogPingRequest(self):
         if self.sess.has_session() == True:
-            self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_AUTH_ALEADY_LOGIN, "aleady login")
+            self.response = self.make_simple_response( RESPONSE_CODE_AUTH_ALEADY_LOGIN, "aleady login")
         else:
-            self.response = self.make_simple_response(self.get_response_command(), RESPONSE_CODE_AUTH_FAIL, "not logged in")
+            self.response = self.make_simple_response( RESPONSE_CODE_AUTH_FAIL, "not logged in")
         return
     def is_valid_password(self, id,pw):
         conf = self.load_json_file(USER_FILE)
@@ -92,7 +92,7 @@ def main():
 
     # check command
     if auth.check_command() == False:
-        auth.response = auth.make_simple_response("unknown command", RESPONSE_CODE_INVALID_MESSAGE_CODE, "unkown command received")
+        auth.response = auth.make_simple_response( RESPONSE_CODE_INVALID_MESSAGE_CODE, "unkown command received")
     else:
         sess = session.Session()
         auth.set_session(sess)

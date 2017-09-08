@@ -1,0 +1,172 @@
+{
+	"platform":{
+		"dnr":[
+			"2D-DNR",
+			"3D-DNR",
+			"N/A"
+		],
+		"privacymask":"",
+		"AGC":[
+			"auto",
+			"not support"
+		],
+		"videocompression":[
+			"MPEG4",
+			"H.264",
+			"H.265",
+			"MJPEG"
+		],
+		"h264profile":[
+			"BP","MP","HP"
+		],
+		"h265profile":[
+			"BP","MP","HP"
+		],
+		"videominbps":"",
+		"videomaxbps":"",
+		"videobpsextra":"",
+		"specialfeature":[
+			"Smart LBR","ROI"
+		],
+		"prebuffer":"",
+		"postbuffer":"",
+		"eventnotifycation":[
+			"FTP", "E-Mail"
+		],
+		"eventtrigger":[
+			"Motion Alarm", "Network disconnection", "Temperature critical"
+		],
+		"ethernet":[
+			"10/100Base-T", "1000Base-T(1Gbps)"
+		],
+		"networkprotocolipv4":[
+			"TCP/IP", "UDP", "AutoIP", "RTP(UDP/TCP)", "RTSP",
+			"NTP", "HTTP", "HTTPS", "SSL", "DNS", "DDNS", "DHCP", "FTP",
+			"SMTP", "ICMP", "SNMPv1/v2/v3(MIB-2)","ONVIF"
+		],
+		"security":[
+			"HTTPS(SSL)", "IP filtering", "802.1x", "Digest Authetication"
+		],
+		"sipvoipsupport":[
+			"SIP", "VoIP", "N/A"
+		],
+		"programmingif":[
+			"CGI API", "ONVIF"
+		],
+		"supportlanguage":[
+			"English", "Korean", "Japanese", "Russian","French" 
+		]
+	},
+	"housing":{
+		"focalbirght":[
+			"F1.4", "F1.6", "F1.8", "F2.0","F2.2", "F2.4", "F2.5", "F2.6"
+		],
+		"focalnum":"",
+		"focallength":[
+			"2.8mm", "2mm","4mm","6mm", "8mm", "10mm", "12mm", "7.2mm", "4.3mm",
+			"2.8mm~12mm","2.1mm", "6.96mm", "6.0mm~50mm","1.55mm"
+		],
+				"lenstype":[
+			"Fixed", "Two motor MFZ", "None"
+		],
+		"iristype":[
+			"Auto Exposure", "P-IRIS"
+		],
+		"fieldangledmin":"",
+		"fieldangledmax":"",
+		"fieldanglehmin":"",
+		"fieldanglehmax":"",
+		"fieldangledmin":"",
+		"fieldangledmin":"",
+		"fieldangletotoal":"",
+		"audioinout":[
+			"1[1.0Vms, 3K ohm]/1", "N/A"
+		],
+		"alarminout":[
+			"1/1", "N/A"
+		],
+		"videoout":[
+			"1[CVBS 1.0V p-p(75ohm)", "N/A"
+		],
+		"videooutratio":[
+			"4:3", "16:9"
+		],
+		"sdcard":"",
+		"humidity":[
+			"Less than 80%(Non-Condensing)",
+			"10-90% RH(Non-Condensing)"
+		],
+		"housing":[
+			"Aluminum Die-casting",
+			"Plastic"
+		],
+		"dimensiond":"",
+		"dimensionh":"",
+		"weightkg":"",
+		"weightlbs":"",
+		"compliance":[
+			"IP65", "IP66", "IP67", "IP68"
+		]
+	},
+	"sensor":{
+		"size":"",
+		"resolutionh":"",
+		"resolutionw":"",
+		"type":[
+			"CCD", "CMOS"
+		],
+		"totalpixelh":"",
+		"totalpixelw":"",
+		"shutterspeedauto":"",
+		"shutterspeedmanualmin":"",
+		"shutterspeedmanualmax":"",
+		"slowshutter":"",
+		"antiflicker":"",
+		"maxresolution":"",
+		"snratio":""
+	},
+	"model":{
+		"irleds":"",
+		"irdistance":"",
+		"multiplestream":"",
+		"supportresolution264":"",
+		"supportresolution265":"",
+		"supportresolutionMJPEG":"",
+		"audiocompression":[
+			"G.711", "N/A"
+		],
+		"edgestorage":[
+			"Micro SD", "Micro SDHC", "Micro SDXC"
+		],
+		"pantiltzoom":"",
+		"dn":[
+			"TDN(True day&Night)",
+			"N/A"
+		],
+		"poweradaptor":"",
+		"powerdc":[
+			"5V", "12V", "24V"
+		],
+		"powerpoe":[
+			"N/A",
+			"PoE IEEE 802.3at",
+			"PoE IEEE 802.3af",
+			"PoE IEEE 802.3af class2",
+			"PoE IEEE 802.3af class3"
+		],
+		"powerconsumptiondc":"",
+		"powerconsumptionpoe":"",
+		"temperaturemin":"",
+		"temperaturemax":"",
+		"temperatureoption":"",
+		"dynamicrangeconf":[
+			"N/A", "WDR(2x)", "WDR(2x/3x)", "WDR"
+		],
+		"sensornum":"",
+		"dynamicrange":"",
+		"imageprocessing":[
+			"Exposure", "White balance", "Sharpness", "BLC", "Brightness", "Contrast", "Saturation", "Hue"
+		]
+		
+	}
+}

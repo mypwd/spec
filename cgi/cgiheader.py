@@ -28,6 +28,11 @@ def bld_cookie(c):
 SPEC_DB_PATH='/var/www/html/spec/cgi/db/spec.db'
 
 USER_FILE='inc/user.json'
+PLATFORM_FILE='inc/platform.json'
+SENSOR_FILE='inc/sensor.json'
+HOUSING_FILE='inc/housing.json'
+MODEL_FILE='inc/model.json'
+PARAM_FILE='inc/param.json'
 
 # define
 

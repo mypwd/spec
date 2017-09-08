@@ -246,19 +246,21 @@ class Protocol:
         #        logger.debug(j)
         return json.dumps(j, ensure_ascii=False, indent=4)
 
-    def make_simple_response( self, command, result, desc ):
-        p = self.build_dfl_response_property( command, result, desc, "")
+    def make_simple_response( self,  result, desc ):
+        p = self.build_dfl_response_property( self.get_response_command(), result, desc, "")
         json_out = self.json_build_dfl_response(p)
         return json_out
 
-    def make_simple_response_without_session( self, command, result, desc ):
-        p = self.build_dfl_response_property( command, result, desc, "")
+    def make_simple_response_without_session( self, result, desc ):
+        
+        p = self.build_dfl_response_property( self.get_response_command(), result, desc, "")
         json_out = self.json_build_dfl_response(p)
         write_header()
         print json_out
 
-    def make_custom_response(self,  command, result, desc, prop):
-        p = self.build_dfl_response_property( command, result, desc, prop)
+    def make_custom_response(self,  result, desc, prop):
+        
+        p = self.build_dfl_response_property( self.get_response_command(), result, desc, prop)
         json_out = self.json_build_dfl_response(p)
         return json_out
 
@@ -285,7 +287,12 @@ class Protocol:
 #            conf_data = json.loads(json_data.decode(H_CODING))
 
         return  conf_data
-    
+    def load_file(self,path):
+        chunk = self.read_file(path)
+        if chunk == None:
+            return None
+        else:
+            return chunk
     def save_json_file(self, path, j):
         #        try:
 
