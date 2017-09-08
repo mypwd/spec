@@ -48,7 +48,7 @@
 			"HTTPS(SSL)", "IP filtering", "802.1x", "Digest Authetication"
 		],
 		"sipvoipsupport":[
-			"SIP", "VoIP", "N/A"
+			"SIP", "VoIP"
 		],
 		"programmingif":[
 			"CGI API", "ONVIF"

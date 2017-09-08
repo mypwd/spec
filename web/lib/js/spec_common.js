@@ -77,14 +77,76 @@ function normal_call( target, data )
 	return request;
 }
 
+
+function append_left(code)
+{
+	$('#left_frame').append(code);
+}
+
+
+
+//////////////////////////////////////////////////
 function make_link_button(target, name)
 {
 	var code;
 	code = '<a class="btn btn-primary" href="' + target + '" role="button">'+name + '</a>';
 	return code;
 }
-
-function append_left(code)
+function make_form_radio_inline(title, name, radioarray)
 {
-	$('#left_frame').append(code);
+	return make_form_radiocheck_inline(title, name, radioarray, 'radio');
 }
+function make_form_checkbox_inline(title, name, checkarray)
+{
+	return make_form_radiocheck_inline(title, name, checkarray, 'checkbox');
+}
+
+function make_form_radiocheck_inline(title, name, arr, type)
+{
+	var code;
+	code = '<div>'+title+'</div>';
+	$.each(arr,
+		   function(idx, item){
+			   code = code +
+				   '<div class="form-check form-check-inline"><label class="form-check-label"><input class="form-check-input" type="'
+				   + type + '" name="'
+				   + name +  '" id="inlineRadio" value="'
+				   + item + '">'
+				   + item + '</label></div>';
+		   }
+		  );
+	return code;
+}
+function make_form_text(title, name, placeholder)
+{
+	var code;
+	code = '<div>'+title+'</div>';
+	code = code
+		+ '<input type="text" class="form-control" id="'
+		+ name + '" placeholder="'
+		+ placeholder + '">'
+	return code;
+}
+function make_form_text_tilde(title, name1, pl1, name2, pl2)
+{
+	var code;
+	code = '<div>'+title+'</div>';
+	code = code
+		+ '<div class="row"><div class="col"><input type="text" id="'
+		+ name1 + '" class="form-control" placeholder="'
+		+ pl1 +'"></div><label> ~ <label><div class="col"><input type="text" id="'
+		+ name2 + '" class="form-control" placeholder="'
+		+ pl2 + '"></div></div>';
+	return code;
+
+}
+function make_action_button(id, name)
+{
+	var code;
+	code = '<div><button type="button" class="btn btn-primary" id="'
+		+ id + '">'
+		+ name + '</button></div>';
+	return code;
+}
+//////////////////////////////////////////////////
+

@@ -45,8 +45,40 @@ function show_add_platform()
 	r.done(
 		function(data){
 			console.log(data);
-			console.log(data.properties.platform.dnr)
+			var platform = data.properties.platform;
+			var code = '';
+			console.log(platform.dnr);
+			code = code + make_form_radio_inline('Digital Noise Reduction', 'dnr', platform.dnr);
+			code = code + make_form_checkbox_inline('Event Trigger', 'eventtrigger', platform.eventtrigger);
+			code = code + make_form_text('Privacy Mask', 'privacymask','16 Programmerable Zone');
+			code = code + make_form_text_tilde('Video Bitrate', 'videominbps', '100k', 'videomaxbps', '10M');
+			code = code + make_form_text('Video Bitrate extra comment', 'videobpsextra', 'Multi-rate for Preview and Recording');
+			code = code + make_form_radio_inline('AGC', 'AGC', platform.AGC);
+			code = code + make_form_checkbox_inline('Video Compression', 'videocompression', platform.videocompression);
+			code = code + make_form_checkbox_inline('H.264 Profile', 'h264profile', platform.h264profile);
+			code = code + make_form_checkbox_inline('H.265 Profile', 'h265profile', platform.h265profile);
+			code = code + make_form_checkbox_inline('Special Feature', 'specialfeature', platform.specialfeature);
+			code = code + make_form_text('Pre Buffer', 'prebuffer', '5');
+			code = code + make_form_text('Post Buffer', 'prebuffer', '240');
+			code = code + make_form_checkbox_inline('Event Notification', 'eventnotifycation', platform.eventnotifycation);
+			code = code + make_form_radio_inline('Ethernet', 'ethernet', platform.ethernet);
+			code = code + make_form_checkbox_inline('Network Protocol(IPv4)', 'networkprotocolipv4', platform.networkprotocolipv4);
+			code = code + make_form_checkbox_inline('Security', 'security', platform.security);
+			code = code + make_form_checkbox_inline('SIP/VoIP support', 'sipvoipsupport', platform.sipvoipsupport);
+			code = code + make_form_checkbox_inline('Programming I/F', 'programmingif', platform.programmingif);
+			code = code + make_form_checkbox_inline('Support languages', 'supportlanguage', platform.supportlanguage);
+			code = code + make_action_button('platform_add_button', 'ADD');
+			$("#platform_form").append(code);
+
+			$('#platform_add_button').click(platform_add_submit);
 		}
 
 	);
+}
+
+
+function platform_add_submit()
+{
+	console.log('submit');
+	
 }
