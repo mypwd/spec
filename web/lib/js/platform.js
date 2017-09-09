@@ -48,6 +48,8 @@ function show_add_platform()
 			var platform = data.properties.platform;
 			var code = '';
 			console.log(platform.dnr);
+			code = code + make_form_text('Platform Name', 'platformname','S3l55m');
+			code = code + make_form_text('Platform description', 'platformdesc','Ambarella S3lm series, 2M');
 			code = code + make_form_radio_inline('Digital Noise Reduction', 'dnr', platform.dnr);
 			code = code + make_form_checkbox_inline('Event Trigger', 'eventtrigger', platform.eventtrigger);
 			code = code + make_form_text('Privacy Mask', 'privacymask','16 Programmerable Zone');
