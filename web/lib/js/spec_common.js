@@ -104,7 +104,7 @@ function make_form_checkbox_inline(title, name, checkarray)
 function make_form_radiocheck_inline(title, name, arr, type)
 {
 	var code;
-	code = '<div>'+title+'</div>';
+	code = '<div class="itemtag">'+title+'</div>';
 	$.each(arr,
 		   function(idx, item){
 			   code = code +
@@ -120,7 +120,7 @@ function make_form_radiocheck_inline(title, name, arr, type)
 function make_form_text(title, name, placeholder)
 {
 	var code;
-	code = '<div>'+title+'</div>';
+	code = '<div class="itemtag">'+title+'</div>';
 	code = code
 		+ '<input type="text" class="form-control" id="'
 		+ name + '" placeholder="'
@@ -130,7 +130,7 @@ function make_form_text(title, name, placeholder)
 function make_form_text_tilde(title, name1, pl1, name2, pl2)
 {
 	var code;
-	code = '<div>'+title+'</div>';
+	code = '<div class="itemtag">'+title+'</div>';
 	code = code
 		+ '<div class="row"><div class="col"><input type="text" id="'
 		+ name1 + '" class="form-control" placeholder="'
@@ -150,3 +150,36 @@ function make_action_button(id, name)
 }
 //////////////////////////////////////////////////
 
+function gather_check_box_value(name)
+{
+	var val  = new Array();
+
+	$("input[name=" + name + "]:checked").each(function(){
+		val.push($(this).val());
+	});
+	return val;
+}
+
+function get_radio_value(name)
+{
+	var val;
+
+	val =  $("input:radio[name=" + name + "]:checked").val();
+	return val;
+}
+
+function get_text_value(id)
+{
+	var val;
+	var jid = '#' + id;
+	val = $(jid).val();
+	return val;
+}
+
+function get_text_tilde_value(id1, id2)
+{
+	var val = new Array();
+	val.push(get_text_value(id1));
+	val.push(get_text_value(id2));
+	return val;
+}

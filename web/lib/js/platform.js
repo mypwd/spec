@@ -80,5 +80,10 @@ function show_add_platform()
 function platform_add_submit()
 {
 	console.log('submit');
-	
+	var videocompression = gather_check_box_value('videocompression');
+	console.log('video');
+	console.log(videocompression);
+	console.log(get_radio_value('dnr'));
+	console.log(get_text_value('privacymask'));
+	console.log(get_text_tilde_value('videominbps', 'videomaxbps'));
 }
