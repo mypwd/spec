@@ -150,6 +150,60 @@ function make_action_button(id, name)
 }
 //////////////////////////////////////////////////
 
+
+
+
+function make_form_each( e )
+{
+	var code = '';
+
+	$.each(e,
+		   function(idx, item){
+			   if(item.custom!='yes'){
+				   if(item.type == 'check'){
+					   code = code + make_form_checkbox_inline(item.title, item.name, item.param);
+				   }else if(item.type=='radio'){
+					   code = code + make_form_radio_inline(item.title, item.name, item.param);
+				   }else if(item.type=='text'){
+					   code = code + make_form_text(item.title, item.name, item.placeholder);
+				   }else if(item.type=='tilde'){
+					   code = code + make_form_text_tilde(item.title, item.param[0], item.placeholder[0], item.param[1], item.placeholder[1]);
+				   }
+			   }
+		   }
+		  );
+	return code;
+	
+}
+
+function get_all_form( p )
+{
+	var o = new Array();
+	// name, title, value
+	$.each(p,
+		   function(idx, item){
+			   var l = {};
+			   l.name = item.name;
+			   l.title = item.title;
+			   if(item.type == 'check'){
+				   l.value = gather_check_box_value(item.name);				   
+			   }else if(item.type=='radio'){
+				   l.value = get_radio_value(item.name);				   
+			   }else if(item.type=='text'){
+				   l.value = get_text_value(item.name);				   
+			   }else if(item.type=='tilde'){
+				   l.value = get_text_tilde_value(item.param[0], item.param[1]);
+			   }
+			   o.push(l);
+		   }
+		   
+		  );
+	console.log(o);
+	return o;
+}
+
+//////////////////////////////////////////////////
+
 function gather_check_box_value(name)
 {
 	var val  = new Array();

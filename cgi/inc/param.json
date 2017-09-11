@@ -1,172 +1,472 @@
 {
-	"platform":{
-		"dnr":[
-			"2D-DNR",
-			"3D-DNR",
-			"N/A"
-		],
-		"privacymask":"",
-		"AGC":[
-			"auto",
-			"not support"
-		],
-		"videocompression":[
-			"MPEG4",
-			"H.264",
-			"H.265",
-			"MJPEG"
-		],
-		"h264profile":[
-			"BP","MP","HP"
-		],
-		"h265profile":[
-			"BP","MP","HP"
-		],
-		"videominbps":"",
-		"videomaxbps":"",
-		"videobpsextra":"",
-		"specialfeature":[
-			"Smart LBR","ROI"
-		],
-		"prebuffer":"",
-		"postbuffer":"",
-		"eventnotifycation":[
-			"FTP", "E-Mail"
-		],
-		"eventtrigger":[
-			"Motion Alarm", "Network disconnection", "Temperature critical"
-		],
-		"ethernet":[
-			"10/100Base-T", "1000Base-T(1Gbps)"
-		],
-		"networkprotocolipv4":[
-			"TCP/IP", "UDP", "AutoIP", "RTP(UDP/TCP)", "RTSP",
-			"NTP", "HTTP", "HTTPS", "SSL", "DNS", "DDNS", "DHCP", "FTP",
-			"SMTP", "ICMP", "SNMPv1/v2/v3(MIB-2)","ONVIF"
-		],
-		"security":[
-			"HTTPS(SSL)", "IP filtering", "802.1x", "Digest Authetication"
-		],
-		"sipvoipsupport":[
-			"SIP", "VoIP"
-		],
-		"programmingif":[
-			"CGI API", "ONVIF"
-		],
-		"supportlanguage":[
-			"English", "Korean", "Japanese", "Russian","French" 
-		]
-	},
-	"housing":{
-		"focalbirght":[
-			"F1.4", "F1.6", "F1.8", "F2.0","F2.2", "F2.4", "F2.5", "F2.6"
-		],
-		"focalnum":"",
-		"focallength":[
-			"2.8mm", "2mm","4mm","6mm", "8mm", "10mm", "12mm", "7.2mm", "4.3mm",
-			"2.8mm~12mm","2.1mm", "6.96mm", "6.0mm~50mm","1.55mm"
-		],
-				"lenstype":[
-			"Fixed", "Two motor MFZ", "None"
-		],
-		"iristype":[
-			"Auto Exposure", "P-IRIS"
-		],
-		"fieldangledmin":"",
-		"fieldangledmax":"",
-		"fieldanglehmin":"",
-		"fieldanglehmax":"",
-		"fieldangledmin":"",
-		"fieldangledmin":"",
-		"fieldangletotoal":"",
-		"audioinout":[
-			"1[1.0Vms, 3K ohm]/1", "N/A"
-		],
-		"alarminout":[
-			"1/1", "N/A"
-		],
-		"videoout":[
-			"1[CVBS 1.0V p-p(75ohm)", "N/A"
-		],
-		"videooutratio":[
-			"4:3", "16:9"
-		],
-		"sdcard":"",
-		"humidity":[
-			"Less than 80%(Non-Condensing)",
-			"10-90% RH(Non-Condensing)"
-		],
-		"housing":[
-			"Aluminum Die-casting",
-			"Plastic"
-		],
-		"dimensiond":"",
-		"dimensionh":"",
-		"weightkg":"",
-		"weightlbs":"",
-		"compliance":[
-			"IP65", "IP66", "IP67", "IP68"
-		]
-	},
-	"sensor":{
-		"size":"",
-		"resolutionh":"",
-		"resolutionw":"",
-		"type":[
-			"CCD", "CMOS"
-		],
-		"totalpixelh":"",
-		"totalpixelw":"",
-		"shutterspeedauto":"",
-		"shutterspeedmanualmin":"",
-		"shutterspeedmanualmax":"",
-		"slowshutter":"",
-		"antiflicker":"",
-		"maxresolution":"",
-		"snratio":""
-	},
-	"model":{
-		"irleds":"",
-		"irdistance":"",
-		"multiplestream":"",
-		"supportresolution264":"",
-		"supportresolution265":"",
-		"supportresolutionMJPEG":"",
-		"audiocompression":[
-			"G.711", "N/A"
-		],
-		"edgestorage":[
-			"Micro SD", "Micro SDHC", "Micro SDXC"
-		],
-		"pantiltzoom":"",
-		"dn":[
-			"TDN(True day&Night)",
-			"N/A"
-		],
-		"poweradaptor":"",
-		"powerdc":[
-			"5V", "12V", "24V"
-		],
-		"powerpoe":[
-			"N/A",
-			"PoE IEEE 802.3at",
-			"PoE IEEE 802.3af",
-			"PoE IEEE 802.3af class2",
-			"PoE IEEE 802.3af class3"
-		],
-		"powerconsumptiondc":"",
-		"powerconsumptionpoe":"",
-		"temperaturemin":"",
-		"temperaturemax":"",
-		"temperatureoption":"",
-		"dynamicrangeconf":[
-			"N/A", "WDR(2x)", "WDR(2x/3x)", "WDR"
-		],
-		"sensornum":"",
-		"dynamicrange":"",
-		"imageprocessing":[
-			"Exposure", "White balance", "Sharpness", "BLC", "Brightness", "Contrast", "Saturation", "Hue"
-		]
+	"platform":[
+		{
+			"name":"dnr",
+			"title":"Digital Noise Reduction",
+			"param":["2D-DNR","3D-DNR",	"N/A"],
+			"type":"check"
+		},
+		{
+			"name":"privacymask",
+			"title":"Privacy Mask",
+			"param":"",
+			"type":"text",
+			"placeholder":"16 Programmerable Zone"
+		},
+		{
+			"name":"AGC",
+			"title":"AGC",
+			"param":["auto","not support"],
+			"type":"radio"
+		},
+		{
+			"name":"videocompression",
+			"title":"Video Compression",
+			"param":["MPEG4","H.264","H.265","MJPEG"],
+			"type":"check"
+		},
+		{
+			"name":"h264profile",
+			"title":"H.264 Profile",
+			"param":["BP","MP","HP"],
+			"type":"check"
+		},
+		{
+			"name":"h265profile",
+			"title":"H.265 Profile",
+			"param":["BP","MP","HP"	],
+			"type":"check"
+		},
+		{
+			"name":"videobps",
+			"title":"Video Bitrate",
+			"param":["videominbps", "videomaxbps"],
+			"placeholder":["100k", "10M"],
+			"type":"tilde"
+		},
+		{
+			"name":"videobpsextra",
+			"title":"Video Bitrate extra comment",
+			"param":"",
+			"type":"text",
+			"placeholder":"Multi-rate for Preview and Recording"
+		},
+		{
+			"name":"specialfeature",
+			"title":"Special Feature",
+			"param":["Smart LBR","ROI"],
+			"type":"check"
+		},
+		{
+			"name":"prebuffer",
+			"title":"Pre Buffer",
+			"param":"",
+			"type":"text",
+			"placeholder":"5"
+		},
+		{
+			"name":"postbuffer",
+			"title":"Post Buffer",
+			"param":"",
+			"type":"text",
+			"placeholder":"240"
+		},
+		{
+			"name":"eventnotifycation",
+			"title":"Event Notification",
+			"param":["FTP", "E-Mail"],
+			"type":"check"
+		},
+		{
+			"name":"eventtrigger",
+			"title":"Event Trigger",
+			"param":["Motion Alarm", "Network disconnection", "Temperature critical"],
+			"type":"check"
+		},
+		{
+			"name":"ethernet",
+			"title":"Ethernet",
+			"param":["10/100Base-T", "1000Base-T(1Gbps)"],
+			"type":"radio"
+		},
+		{
+			"name":"networkprotocolipv4",
+			"title":"Network Protocol(IPv4)",
+			"param":["TCP/IP", "UDP", "AutoIP", "RTP(UDP/TCP)", "RTSP", "NTP", "HTTP", "HTTPS", "SSL", "DNS", "DDNS", "DHCP", "FTP", "SMTP", "ICMP", "SNMPv1/v2/v3(MIB-2)","ONVIF"],
+			"type":"check"
+		},
+		{
+			"name":"security",
+			"title":"Security",
+			"param":["HTTPS(SSL)", "IP filtering", "802.1x", "Digest Authetication"	],
+			"type":"check"
+		},
+		{
+			"name":"sipvoipsupport",
+			"title":"SIP/VoIP support",
+			"param":["SIP", "VoIP"],
+			"type":"check"
+		},
+		{
+			"name":"programmingif",
+			"title":"Programming I/F",
+			"param":["CGI API", "ONVIF"],
+			"type":"check"
+		},
+		{
+			"name":"supportlanguage",
+			"title":"Support languages",
+			"param":["English", "Korean", "Japanese", "Russian","French" ],
+			"type":"check"
+		}
+	],
+	"housing":[
+		{
+			"name":"focalbirght",
+			"title":"",
+			"param":["F1.4", "F1.6", "F1.8", "F2.0","F2.2", "F2.4", "F2.5", "F2.6"],
+			"type":"radio",
+			"custom":"yes"
+		},
+		{
+			"name":"focalnum",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":"",
+			"custom":"yes"
+		},
+		{
+			"name":"focallength",
+			"title":"",
+			"param":["2.8mm", "2mm","4mm","6mm", "8mm", "10mm", "12mm", "7.2mm", "4.3mm","2.8mm~12mm","2.1mm", "6.96mm", "6.0mm~50mm","1.55mm"],
+			"type":"radio",
+			"custom":"yes"
+		},
+		{
+			"name":"lenstype",
+			"title":"",
+			"param":["Fixed", "Two motor MFZ", "None"],
+			"type":"radio"
+		},
+		{
+			"name":"iristype",
+			"title":"",
+			"param":["Auto Exposure", "P-IRIS"],
+			"type":"radio"
+		},
+		{
+			"name":"fieldangled",
+			"title":"",
+			"param":["fieldangledmin","fieldangledmax"],
+			"type":"tilde"
+		},
+		{
+			"name":"fieldangleh",
+			"title":"",
+			"param":["fieldanglehmin","fieldanglehmax"],
+			"type":"tilde"
+		},
+		{
+			"name":"fieldanglev",
+			"title":"",
+			"param":["fieldanglevmin","fieldanglevmax"],
+			"type":"tilde"
+		},
+		{
+			"name":"fieldangletotoal",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"audioinout",
+			"title":"",
+			"param":["1[1.0Vms, 3K ohm]/1", "N/A"],
+			"type":"radio"
+		},
+		{
+			"name":"alarminout",
+			"title":"",
+			"param":["1/1", "N/A"],
+			"type":"radio"
+		},
+		{
+			"name":"videoout",
+			"title":"",
+			"param":["1[CVBS 1.0V p-p(75ohm)", "N/A"],
+			"type":"radio"
+		},
+		{
+			"name":"videooutratio",
+			"title":"",
+			"param":["4:3", "16:9"],
+			"type":"radio"
+		},
+		{
+			"name":"sdcard",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"humidity",
+			"title":"",
+			"param":["Less than 80%(Non-Condensing)","10-90% RH(Non-Condensing)"],
+			"type":"radio"
+		},
+		{
+			"name":"housing",
+			"title":"",
+			"param":["Aluminum Die-casting","Plastic"],
+			"type":"radio"
+		},
+		{
+			"name":"dimensiond",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"dimensionh",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"weightkg",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"weightlbs",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"compliance",
+			"title":"",
+			"param":["IP65", "IP66", "IP67", "IP68"	],
+			"type":"radio"
+		}
+	],
+	"sensor":[
+		{
+			"name":"size",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"resolution",
+			"title":"",
+			"param":["resolutionw", "resolutionh"],
+			"type":"tilde"
+		},
+		{
+			"name":"type",
+			"title":"",
+			"param":["CCD", "CMOS"],
+			"type":"radio"
+		},
+		{
+			"name":"totalpixel",
+			"title":"",
+			"param":["totalpixelw", "totalpixelh"],
+			"type":"tilde"
+		},
+		{
+			"name":"shutterspeedauto",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"shutterspeedmanual",
+			"title":"",
+			"param":["shutterspeedmanualmin","shutterspeedmanualmax"],
+			"type":"tilde"
+		},
+		{
+			"name":"slowshutter",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"antiflicker",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"maxresolution",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"snratio",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		}
+	],
+	"model":[
+		{
+			"name":"irleds",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"irdistance",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"multiplestream",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"supportresolution264",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"supportresolution265",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"supportresolutionMJPEG",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"audiocompression",
+			"title":"",
+			"param":["G.711"],
+			"type":"check"
+		},
+		{
+			"name":"edgestorage",
+			"title":"",
+			"param":["Micro SD", "Micro SDHC", "Micro SDXC"],
+			"type":"check"
+		},
+		{
+			"name":"pantiltzoom",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"dn",
+			"title":"",
+			"param":["TDN(True day&Night)","N/A"],
+			"type":"radio"
+		},
+		{
+			"name":"poweradaptor",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"powerdc",
+			"title":"",
+			"param":["5V", "12V", "24V"	],
+			"type":"radio",
+			"placeholder":""
+		},
+		{
+			"name":"powerpoe",
+			"title":"",
+			"param":["N/A","PoE IEEE 802.3at","PoE IEEE 802.3af","PoE IEEE 802.3af class2",	"PoE IEEE 802.3af class3"],
+			"type":"radio"
+		},
+		{
+			"name":"powerconsumptiondc",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"powerconsumptionpoe",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"temperature",
+			"title":"",
+			"param":["temperaturemin","temperaturemax"],
+			"type":"tilde"
+		},
+		{
+			"name":"temperatureoption",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"dynamicrangeconf",
+			"title":"",
+			"param":["N/A", "WDR(2x)", "WDR(2x/3x)", "WDR"],
+			"type":"radio"
+		},
+		{
+			"name":"sensornum",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"dynamicrange",
+			"title":"",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
+			"name":"imageprocessing",
+			"title":"",
+			"param":["Exposure", "White balance", "Sharpness", "BLC", "Brightness", "Contrast", "Saturation", "Hue"	],
+			"type":"check"
+		}
 		
-	}
+	]
 }

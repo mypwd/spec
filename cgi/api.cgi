@@ -41,10 +41,17 @@ class Specapi(Protocol):
         return
     def AddPlatformRequest(self):
         platform = self.load_json_file(PLATFORM_FILE)
+        name = ''
+        for e in self.properties:
+            if e['name'] == 'platformname':
+                name = e['value']
+        
         for p in platform["platform"]:
-            if p["name"] == self.properties["name"]:
-                self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
-                return
+            for p2 in p:
+                if p2["name"] == 'platformname':
+                    if p2['value'] == name:
+                        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
+                        return
         platform["platform"].append(self.properties)
         self.save_json_file(PLATFORM_FILE, platform)
         self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "succ")
