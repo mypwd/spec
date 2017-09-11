@@ -1,5 +1,82 @@
 {
-	"platform":[
-		
-	]
+    "platform": [
+        {
+            "eventtrigger": [
+                "Motion Alarm", 
+                "Network disconnection", 
+                "Temperature critical"
+            ], 
+            "videobpsextra": "multi-rate", 
+            "privacymask": "16 Programmable Zone", 
+            "eventnotifycation": [
+                "FTP", 
+                "E-Mail"
+            ], 
+            "name": "S3l33m", 
+            "sipvoipsupport": [], 
+            "ethernet": "1000Base-T(1Gbps)", 
+            "prebuffer": "5", 
+            "networkprotocolipv4": [
+                "TCP/IP", 
+                "UDP", 
+                "AutoIP", 
+                "RTP(UDP/TCP)", 
+                "RTSP", 
+                "NTP", 
+                "HTTP", 
+                "SSL", 
+                "DNS", 
+                "DDNS", 
+                "DHCP", 
+                "FTP", 
+                "SMTP", 
+                "ICMP", 
+                "SNMPv1/v2/v3(MIB-2)", 
+                "ONVIF"
+            ], 
+            "AGC": "auto", 
+            "videocompression": [
+                "H.264", 
+                "H.265", 
+                "MJPEG"
+            ], 
+            "videobps": [
+                "100k", 
+                "10M"
+            ], 
+            "h265profile": [
+                "BP", 
+                "MP", 
+                "HP"
+            ], 
+            "supportlanguage": [
+                "English", 
+                "Korean", 
+                "Japanese", 
+                "Russian"
+            ], 
+            "postbuffer": "240", 
+            "dnr": "3D-DNR", 
+            "h264profile": [
+                "BP", 
+                "MP", 
+                "HP"
+            ], 
+            "security": [
+                "HTTPS(SSL)", 
+                "IP filtering", 
+                "802.1x", 
+                "Digest Authetication"
+            ], 
+            "specialfeature": [
+                "Smart LBR", 
+                "ROI"
+            ], 
+            "programmingif": [
+                "CGI API", 
+                "ONVIF"
+            ], 
+            "desc": "ambarella s3l"
+        }
+    ]
 }

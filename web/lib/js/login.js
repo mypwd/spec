@@ -122,15 +122,17 @@ function check_login()
 			code = data.return.code;
 			if( code == "-101" ){
 				set_page_not_login();
-		
+				return -1;
 			}else{
 				set_page_login();
+				return 0;
 			}
 		}
 	);
 	r.fail(
 		function(hr, status){
 			set_page_not_login();
+			return -1;
 		}
 	)
 

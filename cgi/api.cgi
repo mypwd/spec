@@ -28,6 +28,7 @@ class Specapi(Protocol):
         _map = {}
         _map['GetPlatformRequest'] = ['GetPlatformResponse', self.GetPlatformRequest]
         _map['GetParamRequest'] = ['GetParamResponse', self.GetParamRequest]
+        _map['AddPlatformRequest'] = ['AddPlatformResponse', self.AddPlatformRequest]
         return _map
     
     def GetPlatformRequest(self):
@@ -38,6 +39,17 @@ class Specapi(Protocol):
         j = self.load_json_file(PARAM_FILE)
         self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
         return
+    def AddPlatformRequest(self):
+        platform = self.load_json_file(PLATFORM_FILE)
+        for p in platform["platform"]:
+            if p["name"] == self.properties["name"]:
+                self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
+                return
+        platform["platform"].append(self.properties)
+        self.save_json_file(PLATFORM_FILE, platform)
+        self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "succ")
+        return
+    
 def main():
     specapi = Specapi()
 
@@ -48,7 +60,7 @@ def main():
         exit(-1)
     # check command
     if specapi.check_command() == False:
-        specapi.response = specapi.make_simple_response("unknown command", RESPONSE_CODE_INVALID_MESSAGE_CODE, "unkown command received")
+        specapi.response = specapi.make_simple_response( RESPONSE_CODE_INVALID_MESSAGE_CODE, "unkown command received")
     else:
         specapi.dispatcher()
 

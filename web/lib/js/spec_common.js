@@ -89,7 +89,7 @@ function append_left(code)
 function make_link_button(target, name)
 {
 	var code;
-	code = '<a class="btn btn-primary" href="' + target + '" role="button">'+name + '</a>';
+	code = '<a class="btn btn-primary btn-sm" href="' + target + '" role="button">'+name + '</a>';
 	return code;
 }
 function make_form_radio_inline(title, name, radioarray)
