@@ -1,6 +1,20 @@
 {
 	"platform":[
 		{
+			"name":"platformname",
+			"title":"Platform Name",
+			"param":"",
+			"type":"text",
+			"placeholder":"S3L33m"
+		},
+		{
+			"name":"platformdesc",
+			"title":"Platform description",
+			"param":"",
+			"type":"text",
+			"placeholder":""
+		},
+		{
 			"name":"dnr",
 			"title":"Digital Noise Reduction",
 			"param":["2D-DNR","3D-DNR",	"N/A"],

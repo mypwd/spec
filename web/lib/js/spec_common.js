@@ -77,19 +77,31 @@ function normal_call( target, data )
 	return request;
 }
 
-
 function append_left(code)
 {
 	$('#left_frame').append(code);
 }
 
+function append_right(code)
+{
+	$('#right_frame').append(code);
+}
 
+$.urlparam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+		return null;
+    }
+    else{
+		return results[1] || 0;
+    }
+}
 
 //////////////////////////////////////////////////
-function make_link_button(target, name)
+function make_link_button(target, name, id)
 {
 	var code;
-	code = '<a class="btn btn-primary btn-sm" href="' + target + '" role="button">'+name + '</a>';
+	code = '<a class="btn btn-primary btn-sm" href="' + target + '" role="button" id="'+id+'">'+name + '</a>&nbsp;';
 	return code;
 }
 function make_form_radio_inline(title, name, radioarray)
