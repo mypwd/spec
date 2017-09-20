@@ -63,18 +63,28 @@ function check_auth( data )
 	}
 }
 
-
-function normal_call( target, data )
+function _ajax_call( target, data, async )
 {
 	var request = jQuery.ajax( 
 		{
 			type:"POST", 
 			url:target,
+			async:async,
 			data: data,
 			dataType:"JSON"
 		}
 	);
 	return request;
+}
+
+function normal_call( target, data )
+{
+	return _ajax_call(target, data, true);
+}
+
+function sync_call( target, data)
+{
+	return _ajax_call(target, data, false);
 }
 
 function append_left(code)
@@ -248,4 +258,47 @@ function get_text_tilde_value(id1, id2)
 	val.push(get_text_value(id1));
 	val.push(get_text_value(id2));
 	return val;
+}
+
+//////////////////////////////////////////////////////
+
+function fill_form_text(name, value)
+{
+	$("#"+name).val(value);
+}
+
+function check_form_checkbox(name, value)
+{
+	var i;
+	if( value.length == 0 ){
+		return;
+	}
+	for(i = 0; i < value.length; i++){
+		$("input[name="+name+"][value=\'"+value[i]+"\']").attr("checked",true);
+	}
+}
+
+function check_form_radiobutton(name, value)
+{
+	var s = "input:radio[name=\'"+name+"\']:radio[value=\'"+value+"\']";
+	console.log(s);
+	$(s).attr("checked", true);
+}
+
+function fill_check_param(name, type, param_array)
+{
+	var i;
+	for( i = 0 ; i < param_array.length; i++){
+		
+		if( param_array[i]['name'] == name){
+			if( type == "check"){
+				check_form_checkbox(name, param_array[i]['value']);
+			}else if( type == "radio"){
+				check_form_radiobutton(name, param_array[i]['value']);
+			}else if( type == "text") {
+				fill_form_text(name, param_array[i]['value']);
+			}
+		}
+		
+	}
 }

@@ -29,6 +29,9 @@ class Specapi(Protocol):
         _map['GetPlatformRequest'] = ['GetPlatformResponse', self.GetPlatformRequest]
         _map['GetParamRequest'] = ['GetParamResponse', self.GetParamRequest]
         _map['AddPlatformRequest'] = ['AddPlatformResponse', self.AddPlatformRequest]
+        _map['DelPlatformRequest'] = ['DelPlatformResponse', self.DelPlatformRequest]
+        _map['ModifyPlatformRequest'] = ['ModifyPlatformResponse', self.ModifyPlatformRequest]
+        _map['GetPlatformDataRequest'] = ['GetPlatformDataResponse', self.GetPlatformDataRequest]
         return _map
     
     def GetPlatformRequest(self):
@@ -42,21 +45,47 @@ class Specapi(Protocol):
     def AddPlatformRequest(self):
         platform = self.load_json_file(PLATFORM_FILE)
         name = ''
-        for e in self.properties:
-            if e['name'] == 'platformname':
-                name = e['value']
-        
+
         for p in platform["platform"]:
-            for p2 in p:
-                if p2["name"] == 'platformname':
-                    if p2['value'] == name:
-                        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
-                        return
+            if p["name"] == self.properties['name']:
+                self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
+                return
         platform["platform"].append(self.properties)
         self.save_json_file(PLATFORM_FILE, platform)
         self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "succ")
         return
-    
+    def DelPlatformRequest(self):
+        platform = self.load_json_file(PLATFORM_FILE)
+        for i in xrange(len(platform["platform"])):
+            if platform["platform"][i]["name"] == self.properties['platform']:
+                platform["platform"].pop(i)
+                self.save_json_file(PLATFORM_FILE, platform)
+                self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "success")
+                return
+        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, "no such platform name")
+        return
+    def ModifyPlatformRequest(self):
+        platform = self.load_json_file(PLATFORM_FILE)
+        for i in xrange(len(platform["platform"])):
+            if platform['platform'][i]['name'] == self.properties['name']:
+                platform["platform"][i] = self.properties
+                self.save_json_file(PLATFORM_FILE, platform)
+                self.response = self.make_simple_response( RESPONSE_CODE_SUCC, '')
+                return
+        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, '')     
+    def GetPlatformDataRequest(self):
+        platform_data = self.load_json_file(PLATFORM_FILE)
+        for p in platform_data['platform']:
+            if p['name'] == self.properties['platform']:
+                self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '',p)
+                return
+        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, 'no such platform name');
+        return
+
+
+        self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
+        return
+
 def main():
     specapi = Specapi()
 

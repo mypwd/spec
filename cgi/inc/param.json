@@ -1,20 +1,6 @@
 {
 	"platform":[
 		{
-			"name":"platformname",
-			"title":"Platform Name",
-			"param":"",
-			"type":"text",
-			"placeholder":"S3L33m"
-		},
-		{
-			"name":"platformdesc",
-			"title":"Platform description",
-			"param":"",
-			"type":"text",
-			"placeholder":""
-		},
-		{
 			"name":"dnr",
 			"title":"Digital Noise Reduction",
 			"param":["2D-DNR","3D-DNR",	"N/A"],
@@ -52,11 +38,18 @@
 			"type":"check"
 		},
 		{
-			"name":"videobps",
-			"title":"Video Bitrate",
-			"param":["videominbps", "videomaxbps"],
-			"placeholder":["100k", "10M"],
-			"type":"tilde"
+			"name":"videominbps",
+			"title":"Video Bitrate min",
+			"param":"",
+			"placeholder":"100k",
+			"type":"text"
+		},
+		{
+			"name":"videomaxbps",
+			"title":"Video Bitrate max",
+			"param":"",
+			"type":"text",
+			"placeholder":"10M"
 		},
 		{
 			"name":"videobpsextra",
@@ -170,22 +163,39 @@
 			"type":"radio"
 		},
 		{
-			"name":"fieldangled",
+			"name":"fieldangledmin",
 			"title":"",
-			"param":["fieldangledmin","fieldangledmax"],
-			"type":"tilde"
+			"param":"",
+			"type":"text"
 		},
 		{
-			"name":"fieldangleh",
+			"name":"fieldangledmax",
 			"title":"",
-			"param":["fieldanglehmin","fieldanglehmax"],
-			"type":"tilde"
+			"param":"",
+			"type":"text"
 		},
 		{
-			"name":"fieldanglev",
+			"name":"fieldanglehmin",
 			"title":"",
-			"param":["fieldanglevmin","fieldanglevmax"],
-			"type":"tilde"
+			"param":"",
+			"type":"text"
+		},
+		{
+			"name":"fieldanglehmax",
+			"title":"",
+			"param":"",
+			"type":"text"
+		},		{
+			"name":"fieldanglevmin",
+			"title":"",
+			"param":"",
+			"type":"text"
+		},
+		{
+			"name":"fieldanglevmax",
+			"title":"",
+			"param":"",
+			"type":"text"
 		},
 		{
 			"name":"fieldangletotoal",
@@ -281,10 +291,16 @@
 			"placeholder":""
 		},
 		{
-			"name":"resolution",
+			"name":"resolutionw",
 			"title":"",
-			"param":["resolutionw", "resolutionh"],
-			"type":"tilde"
+			"param":"",
+			"type":"text"
+		},
+		{
+			"name":"resolutionh",
+			"title":"",
+			"param":"",
+			"type":"text"
 		},
 		{
 			"name":"type",
@@ -293,10 +309,16 @@
 			"type":"radio"
 		},
 		{
-			"name":"totalpixel",
+			"name":"totalpixelw",
 			"title":"",
-			"param":["totalpixelw", "totalpixelh"],
-			"type":"tilde"
+			"param":"",
+			"type":"text"
+		},
+		{
+			"name":"totalpixelh",
+			"title":"",
+			"param":"",
+			"type":"text"
 		},
 		{
 			"name":"shutterspeedauto",
@@ -306,10 +328,16 @@
 			"placeholder":""
 		},
 		{
-			"name":"shutterspeedmanual",
+			"name":"shutterspeedmanualmin",
 			"title":"",
-			"param":["shutterspeedmanualmin","shutterspeedmanualmax"],
-			"type":"tilde"
+			"param":"",
+			"type":"text"
+		},
+		{
+			"name":"shutterspeedmanualmax",
+			"title":"",
+			"param":"",
+			"type":"text"
 		},
 		{
 			"name":"slowshutter",
@@ -443,10 +471,16 @@
 			"placeholder":""
 		},
 		{
-			"name":"temperature",
+			"name":"temperaturemin",
 			"title":"",
-			"param":["temperaturemin","temperaturemax"],
-			"type":"tilde"
+			"param":"",
+			"type":"text"
+		},
+		{
+			"name":"temperaturemax",
+			"title":"",
+			"param":"",
+			"type":"text"
 		},
 		{
 			"name":"temperatureoption",
