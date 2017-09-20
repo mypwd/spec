@@ -129,389 +129,267 @@
 	],
 	"housing":[
 		{
-			"name":"focalbirght",
-			"title":"",
-			"param":["F1.4", "F1.6", "F1.8", "F2.0","F2.2", "F2.4", "F2.5", "F2.6"],
-			"type":"radio",
-			"custom":"yes"
-		},
-		{
-			"name":"focalnum",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":"",
-			"custom":"yes"
-		},
-		{
 			"name":"focallength",
-			"title":"",
-			"param":["2.8mm", "2mm","4mm","6mm", "8mm", "10mm", "12mm", "7.2mm", "4.3mm","2.8mm~12mm","2.1mm", "6.96mm", "6.0mm~50mm","1.55mm"],
-			"type":"radio",
-			"custom":"yes"
+			"title":"Focal Length",
+			"param":"",
+			"type":"textarea"
 		},
 		{
 			"name":"lenstype",
-			"title":"",
+			"title":"Lens Type",
 			"param":["Fixed", "Two motor MFZ", "None"],
 			"type":"radio"
 		},
 		{
 			"name":"iristype",
-			"title":"",
+			"title":"IRIS Type",
 			"param":["Auto Exposure", "P-IRIS"],
 			"type":"radio"
 		},
 		{
-			"name":"fieldangledmin",
-			"title":"",
+			"name":"fieldangle",
+			"title":"Field Angle",
 			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"fieldangledmax",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"fieldanglehmin",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"fieldanglehmax",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},		{
-			"name":"fieldanglevmin",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"fieldanglevmax",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"fieldangletotoal",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":""
+			"type":"textarea"
 		},
 		{
 			"name":"audioinout",
-			"title":"",
+			"title":"Audio Input",
 			"param":["1[1.0Vms, 3K ohm]/1", "N/A"],
 			"type":"radio"
 		},
 		{
 			"name":"alarminout",
-			"title":"",
+			"title":"Alarm InOut",
 			"param":["1/1", "N/A"],
 			"type":"radio"
 		},
 		{
 			"name":"videoout",
-			"title":"",
+			"title":"Video Out",
 			"param":["1[CVBS 1.0V p-p(75ohm)", "N/A"],
 			"type":"radio"
 		},
 		{
 			"name":"videooutratio",
-			"title":"",
+			"title":"Video Out Ratio",
 			"param":["4:3", "16:9"],
 			"type":"radio"
 		},
 		{
 			"name":"sdcard",
-			"title":"",
-			"param":"",
-			"type":"text",
+			"title":"SD Card Socket",
+			"param":["N/A", "1"],
+			"type":"radio",
 			"placeholder":""
 		},
 		{
 			"name":"humidity",
-			"title":"",
+			"title":"Humidity",
 			"param":["Less than 80%(Non-Condensing)","10-90% RH(Non-Condensing)"],
 			"type":"radio"
 		},
 		{
 			"name":"housing",
-			"title":"",
+			"title":"Housing",
 			"param":["Aluminum Die-casting","Plastic"],
 			"type":"radio"
 		},
 		{
 			"name":"dimensiond",
-			"title":"",
+			"title":"Dimensions D",
 			"param":"",
 			"type":"text",
 			"placeholder":""
 		},
 		{
 			"name":"dimensionh",
-			"title":"",
+			"title":"Dimensions H",
 			"param":"",
 			"type":"text",
 			"placeholder":""
 		},
 		{
-			"name":"weightkg",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":""
-		},
-		{
-			"name":"weightlbs",
-			"title":"",
+			"name":"weight",
+			"title":"Weight",
 			"param":"",
 			"type":"text",
 			"placeholder":""
 		},
 		{
 			"name":"compliance",
-			"title":"",
+			"title":"Compliance",
 			"param":["IP65", "IP66", "IP67", "IP68"	],
 			"type":"radio"
 		}
 	],
 	"sensor":[
 		{
-			"name":"size",
-			"title":"",
+			"name":"resolution",
+			"title":"Image Sensor Resolution",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"1/2.3inch 12.0M CMOSx4ea"
 		},
 		{
-			"name":"resolutionw",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"resolutionh",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"type",
-			"title":"",
-			"param":["CCD", "CMOS"],
-			"type":"radio"
-		},
-		{
-			"name":"totalpixelw",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"totalpixelh",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"shutterspeedauto",
-			"title":"",
+			"name":"totalpixel",
+			"title":"Total Pixel",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"4000(H) x 3000(V)"
 		},
 		{
-			"name":"shutterspeedmanualmin",
-			"title":"",
+			"name":"shutterspeed",
+			"title":"Shutter Speed",
 			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"shutterspeedmanualmax",
-			"title":"",
-			"param":"",
-			"type":"text"
-		},
-		{
-			"name":"slowshutter",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":""
-		},
-		{
-			"name":"antiflicker",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":""
+			"type":"textarea",
+			"placeholder":"Auto/Manual(1/30 ~ 1/32000), Anti Flicker, Slow Shutter(1~1/5,1/7.5, 1/10)"
 		},
 		{
 			"name":"maxresolution",
-			"title":"",
+			"title":"Max Resolution",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"48MP(4x12MP)"
 		},
 		{
 			"name":"snratio",
-			"title":"",
+			"title":"S/N Ratio",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"50dB"
 		}
 	],
 	"model":[
 		{
 			"name":"irleds",
-			"title":"",
+			"title":"IR Leds",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"High Power LED 6ea(Option)"
 		},
 		{
 			"name":"irdistance",
-			"title":"",
+			"title":"IR Distance",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"70ft"
 		},
 		{
 			"name":"multiplestream",
-			"title":"",
+			"title":"Multiple Profile Streaming Performance",
 			"param":"",
-			"type":"text",
-			"placeholder":""
+			"type":"textarea",
+			"placeholder":"1440p30 + 480p30 with H.264+MPEG"
 		},
 		{
 			"name":"supportresolution264",
-			"title":"",
+			"title":"Support Resolution(H.264)",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"1440p/1080p/720p/VGA"
 		},
 		{
 			"name":"supportresolution265",
-			"title":"",
+			"title":"Support Resolution(H.265)",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"1440p/1080p/720p/VGA"
 		},
 		{
 			"name":"supportresolutionMJPEG",
-			"title":"",
+			"title":"Support Resolution(MJPEG)",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"1440p/1080p/720p/VGA"
 		},
 		{
 			"name":"audiocompression",
-			"title":"",
+			"title":"Audio Compression",
 			"param":["G.711"],
 			"type":"check"
 		},
 		{
 			"name":"edgestorage",
-			"title":"",
+			"title":"Edge Storage",
 			"param":["Micro SD", "Micro SDHC", "Micro SDXC"],
 			"type":"check"
 		},
 		{
 			"name":"pantiltzoom",
-			"title":"",
+			"title":"Pan/Tilt/Zoom",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"Z: X4.2 Optical"
 		},
 		{
 			"name":"dn",
-			"title":"",
+			"title":"D&N",
 			"param":["TDN(True day&Night)","N/A"],
 			"type":"radio"
 		},
 		{
 			"name":"poweradaptor",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":""
+			"title":"Power Adaptor",
+			"param":["included", "not included"],
+			"type":"radio"
+
 		},
 		{
 			"name":"powerdc",
-			"title":"",
+			"title":"Power DC",
 			"param":["5V", "12V", "24V"	],
-			"type":"radio",
-			"placeholder":""
+			"type":"radio"
+
 		},
 		{
 			"name":"powerpoe",
-			"title":"",
+			"title":"Power POE",
 			"param":["N/A","PoE IEEE 802.3at","PoE IEEE 802.3af","PoE IEEE 802.3af class2",	"PoE IEEE 802.3af class3"],
 			"type":"radio"
 		},
 		{
 			"name":"powerconsumptiondc",
-			"title":"",
+			"title":"Power Consumption",
 			"param":"",
 			"type":"text",
-			"placeholder":""
-		},
-		{
-			"name":"powerconsumptionpoe",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":""
+			"placeholder":"MAX 11.0W(with TDN)"
 		},
 		{
 			"name":"temperaturemin",
-			"title":"",
-			"param":"",
+			"title":"Temperature(min) ",
+			"param":"-10",
 			"type":"text"
 		},
 		{
 			"name":"temperaturemax",
-			"title":"",
+			"title":"Temperature(max)",
 			"param":"",
 			"type":"text"
 		},
 		{
 			"name":"temperatureoption",
-			"title":"",
+			"title":"Temperature(option)",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"Cold Start"
 		},
 		{
 			"name":"dynamicrangeconf",
-			"title":"",
+			"title":"Dynamic Range Conf.",
 			"param":["N/A", "WDR(2x)", "WDR(2x/3x)", "WDR"],
 			"type":"radio"
 		},
 		{
-			"name":"sensornum",
-			"title":"",
-			"param":"",
-			"type":"text",
-			"placeholder":""
-		},
-		{
 			"name":"dynamicrange",
-			"title":"",
+			"title":"Dynamic Range",
 			"param":"",
 			"type":"text",
-			"placeholder":""
+			"placeholder":"120dB"
 		},
 		{
 			"name":"imageprocessing",
-			"title":"",
+			"title":"Image Processing",
 			"param":["Exposure", "White balance", "Sharpness", "BLC", "Brightness", "Contrast", "Saturation", "Hue"	],
 			"type":"check"
 		}

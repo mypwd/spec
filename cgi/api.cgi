@@ -26,12 +26,20 @@ class Specapi(Protocol):
         
     def set_map(self):
         _map = {}
-        _map['GetPlatformRequest'] = ['GetPlatformResponse', self.GetPlatformRequest]
+
         _map['GetParamRequest'] = ['GetParamResponse', self.GetParamRequest]
+
+        _map['GetPlatformRequest'] = ['GetPlatformResponse', self.GetPlatformRequest]
         _map['AddPlatformRequest'] = ['AddPlatformResponse', self.AddPlatformRequest]
         _map['DelPlatformRequest'] = ['DelPlatformResponse', self.DelPlatformRequest]
         _map['ModifyPlatformRequest'] = ['ModifyPlatformResponse', self.ModifyPlatformRequest]
         _map['GetPlatformDataRequest'] = ['GetPlatformDataResponse', self.GetPlatformDataRequest]
+
+        _map['GetSensorRequest'] = ['GetSensorResponse', self.GetSensorRequest]
+        _map['AddSensorRequest'] = ['AddSensorResponse', self.AddSensorRequest]
+        _map['DelSensorRequest'] = ['DelSensorResponse', self.DelSensorRequest]
+        _map['GetSensorDataRequest'] = ['GetSensorDataResponse', self.GetSensorDataRequest]
+        _map['ModifySensorRequest'] = ['ModifySensorResponse', self.ModifySensorRequest]
         return _map
     
     def GetPlatformRequest(self):
@@ -83,8 +91,50 @@ class Specapi(Protocol):
         return
 
 
+    def GetSensorRequest(self):
+        j = self.load_json_file(SENSOR_FILE)
         self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
         return
+    def AddSensorRequest(self):
+        sensor = self.load_json_file(SENSOR_FILE)
+        name = ''
+
+        for p in sensor["sensor"]:
+            if p["name"] == self.properties['name']:
+                self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
+                return
+        sensor["sensor"].append(self.properties)
+        self.save_json_file(SENSOR_FILE, sensor)
+        self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "succ")
+        return
+    def DelSensorRequest(self):
+        sensor = self.load_json_file(SENSOR_FILE)
+        for i in xrange(len(sensor["sensor"])):
+            if sensor["sensor"][i]["name"] == self.properties['sensor']:
+                sensor["sensor"].pop(i)
+                self.save_json_file(SENSOR_FILE, sensor)
+                self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "success")
+                return
+        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, "no such sensor name")
+        return
+    def GetSensorDataRequest(self):
+        sensor_data = self.load_json_file(SENSOR_FILE)
+        for p in sensor_data['sensor']:
+            if p['name'] == self.properties['sensor']:
+                self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '',p)
+                return
+        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, 'no such sensor name');
+        return
+    def ModifySensorRequest(self):
+        sensor = self.load_json_file(SENSOR_FILE)
+        for i in xrange(len(sensor["sensor"])):
+            if sensor['sensor'][i]['name'] == self.properties['name']:
+                sensor["sensor"][i] = self.properties
+                self.save_json_file(SENSOR_FILE, sensor)
+                self.response = self.make_simple_response( RESPONSE_CODE_SUCC, '')
+                return
+        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, '')     
+
 
 def main():
     specapi = Specapi()

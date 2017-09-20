@@ -112,8 +112,8 @@ function show_platform()
 			var lflag = 1;
 			var selected_platform_index = 0;
 			if ( platform_list.length < 1){
-				$("#modify_button").attr("disabled", true);
-				$("#delete_button").attr("disabled", true);
+				$("#modify_button").bind('click', false);
+				$("#delete_button").bind('click', false);
 				return;
 			}
 			// make left
@@ -207,7 +207,7 @@ function show_mod_platform()
 		function(data){
 			console.log(data);
 			if ( data.return.code != 0 ){
-				display_login();
+				
 				return;
 			}
 			platform_param = data.properties.platform;
@@ -221,7 +221,7 @@ function show_mod_platform()
 				function(data){
 					console.log(data);
 					if ( data.return.code != 0 ){
-						display_login();
+
 						return;
 					}
 					platform_data = data.properties;
@@ -272,7 +272,7 @@ function show_add_platform()
 		function(data){
 			console.log(data);
 			if ( data.return.code != 0 ){
-				display_login();
+
 				return;
 			}
 			var platform = data.properties.platform;
@@ -283,7 +283,7 @@ function show_add_platform()
 			code = code + make_form_each(platform);
 			code = code + make_action_button('platform_add_button', 'ADD');
 
-			$("#platform_form").append(code);
+			$("#right_frame").append(code);
 			
 			$('#platform_add_button').click(platform,platform_add_submit);
 		}

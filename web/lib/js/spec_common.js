@@ -149,19 +149,17 @@ function make_form_text(title, name, placeholder)
 		+ placeholder + '">'
 	return code;
 }
-function make_form_text_tilde(title, name1, pl1, name2, pl2)
+function make_form_textarea(title, name, placeholder)
 {
 	var code;
 	code = '<div class="itemtag">'+title+'</div>';
 	code = code
-		+ '<div class="row"><div class="col"><input type="text" id="'
-		+ name1 + '" class="form-control" placeholder="'
-		+ pl1 +'"></div><label> ~ <label><div class="col"><input type="text" id="'
-		+ name2 + '" class="form-control" placeholder="'
-		+ pl2 + '"></div></div>';
+		+ '<input type="textarea" class="form-control" id="'
+		+ name + '" placeholder="'
+		+ placeholder + '">'
 	return code;
-
 }
+
 function make_action_button(id, name)
 {
 	var code;
@@ -181,17 +179,17 @@ function make_form_each( e )
 
 	$.each(e,
 		   function(idx, item){
-			   if(item.custom!='yes'){
-				   if(item.type == 'check'){
-					   code = code + make_form_checkbox_inline(item.title, item.name, item.param);
-				   }else if(item.type=='radio'){
-					   code = code + make_form_radio_inline(item.title, item.name, item.param);
-				   }else if(item.type=='text'){
-					   code = code + make_form_text(item.title, item.name, item.placeholder);
-				   }else if(item.type=='tilde'){
-					   code = code + make_form_text_tilde(item.title, item.param[0], item.placeholder[0], item.param[1], item.placeholder[1]);
-				   }
+
+			   if(item.type == 'check'){
+				   code = code + make_form_checkbox_inline(item.title, item.name, item.param);
+			   }else if(item.type=='radio'){
+				   code = code + make_form_radio_inline(item.title, item.name, item.param);
+			   }else if(item.type=='text'){
+				   code = code + make_form_text(item.title, item.name, item.placeholder);
+			   }else if(item.type=='textarea'){
+				   code = code + make_form_textarea(item.title, item.name, item.placeholder);
 			   }
+
 		   }
 		  );
 	return code;
@@ -213,8 +211,8 @@ function get_all_form( p )
 				   l.value = get_radio_value(item.name);				   
 			   }else if(item.type=='text'){
 				   l.value = get_text_value(item.name);				   
-			   }else if(item.type=='tilde'){
-				   l.value = get_text_tilde_value(item.param[0], item.param[1]);
+			   }else if(item.type=='textarea'){
+				   l.value = get_textarea_value(item.name);
 			   }
 			   o.push(l);
 		   }
@@ -251,14 +249,14 @@ function get_text_value(id)
 	val = $(jid).val();
 	return val;
 }
-
-function get_text_tilde_value(id1, id2)
+function get_textarea_value(id)
 {
-	var val = new Array();
-	val.push(get_text_value(id1));
-	val.push(get_text_value(id2));
+	var val;
+	var jid = '#' + id;
+	val = $(jid).val();
 	return val;
 }
+
 
 //////////////////////////////////////////////////////
 
