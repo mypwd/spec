@@ -232,6 +232,13 @@
 			"placeholder":"1/2.3inch 12.0M CMOSx4ea"
 		},
 		{
+			"name":"simpleresolution",
+			"title":"Sensor simple resolution",
+			"param":"",
+			"type":"text",
+			"placeholder":"4MP"
+		},
+		{
 			"name":"totalpixel",
 			"title":"Total Pixel",
 			"param":"",

@@ -85,7 +85,83 @@
 		  <div class="col-md-3" id="left_frame">
 		  </div>
 		  <div class="col-md-9" id="right_frame">
+			
+			<div id="model_pre">
+			</div>
 
+			<!-- model accordion -->
+			<div id="accordion" role="tablist" style="display:none">
+			  <div class="card">
+				<div class="card-header" role="tab" id="headingThree">
+				  <h5 class="mb-0">
+					<a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+					  Model parameters
+					</a>
+				  </h5>
+				</div>
+				<div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+				  <div class="card-body" id="model_card">
+				  </div>
+				</div>
+			  </div>			  <div class="card">
+				<div class="card-header" role="tab" id="headingOne">
+				  <h5 class="mb-0">
+					<a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					  Platform dependent parameters
+					</a>
+				  </h5>
+				</div>
+
+				<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+				  <div class="card-body" id="platform_card">
+
+				  </div>
+				</div>
+			  </div>
+			  <div class="card">
+				<div class="card-header" role="tab" id="headingTwo">
+				  <h5 class="mb-0">
+					<a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					  Housing dependent parameters
+					</a>
+				  </h5>
+				</div>
+				<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+				  <div class="card-body" id="housing_card">
+
+				  </div>
+				</div>
+			  </div>
+			  <div class="card">
+				<div class="card-header" role="tab" id="headingThree">
+				  <h5 class="mb-0">
+					<a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Sensor dependent parameters
+					</a>
+				  </h5>
+				</div>
+				<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+				  <div class="card-body" id="sensor_card">
+				  </div>
+				</div>
+			  </div>
+
+			</div>
+			<!-- model accordion -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
 			
 		  </div>
 		</div>
@@ -112,7 +188,28 @@
 
 
 
+    <!-- model select modal -->
+    <div class="modal fade" id="ModelModal" tabindex="-1" role="dialog" aria-labelledby="model_title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="model_title"></h4>
+          </div>
+          <div class="modal-body">
+            <div id="model_info"></div>
+			<div id="model_contents"></div>
+          </div>
 
+          <div class="modal-footer" >
+            <button type="button" class="btn btn-primary" id="model_check_button">확인</button>
+            <button type="button" class="btn btn-default" id="model_cancel_button" data-dismiss="modal">취소</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+	
     <!-- _remove modal -->
     <div class="modal fade" id="RemoveModal" tabindex="-1" role="dialog" aria-labelledby="remove_title" aria-hidden="true">
       <div class="modal-dialog">
@@ -133,6 +230,7 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+	
 
 
 	<!-- -------------------------------------------------------- -->

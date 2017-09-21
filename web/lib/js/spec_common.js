@@ -111,7 +111,7 @@ $.urlparam = function(name){
 function make_link_button(target, name, id)
 {
 	var code;
-	code = '<a class="btn btn-primary btn-sm" href="' + target + '" role="button" id="'+id+'">'+name + '</a>&nbsp;';
+	code = '<a class="btn btn-primary btn-sm" href="./' + target + '" role="button" id="'+id+'">'+name + '</a>&nbsp;';
 	return code;
 }
 function make_form_radio_inline(title, name, radioarray)
@@ -154,18 +154,17 @@ function make_form_textarea(title, name, placeholder)
 	var code;
 	code = '<div class="itemtag">'+title+'</div>';
 	code = code
-		+ '<input type="textarea" class="form-control" id="'
-		+ name + '" placeholder="'
-		+ placeholder + '">'
+		+ '<textarea class="form-control" id="'
+		+ name + '"></textarea>'
 	return code;
 }
 
 function make_action_button(id, name)
 {
 	var code;
-	code = '<div><button type="button" class="btn btn-primary" id="'
+	code = '<button type="button" class="btn btn-primary btn-sm" id="'
 		+ id + '">'
-		+ name + '</button></div>';
+		+ name + '</button>';
 	return code;
 }
 //////////////////////////////////////////////////
@@ -264,6 +263,10 @@ function fill_form_text(name, value)
 {
 	$("#"+name).val(value);
 }
+function fill_form_textarea(name, value)
+{
+	$("#"+name).val(value);
+}
 
 function check_form_checkbox(name, value)
 {
@@ -295,6 +298,8 @@ function fill_check_param(name, type, param_array)
 				check_form_radiobutton(name, param_array[i]['value']);
 			}else if( type == "text") {
 				fill_form_text(name, param_array[i]['value']);
+			}else if( type == "textarea"){
+				fill_form_textarea(name, param_array[i]['value']);
 			}
 		}
 		

@@ -21,10 +21,10 @@ function _get_command(comm, item)
 			"model":"DelModelRequest"
 		},
 		"mod":{
-			"platform":"ModPlatformRequest",
-			"sensor":"ModSensorRequest",
-			"housing":"ModHousingRequest",
-			"model":"ModModelRequest"
+			"platform":"ModifyPlatformRequest",
+			"sensor":"ModifySensorRequest",
+			"housing":"ModifyHousingRequest",
+			"model":"ModifyModelRequest"
 		},
 		"data":{
 			"platform":"GetPlatformDataRequest",
@@ -112,8 +112,8 @@ function item_delete_submit(e)
 {
 	
 	var p = {};
-
-	p[e.data.item] = e.data.pid;
+	var item= e.data.item;
+	p[item] = e.data.pid;
 	// 전송
 	var basic = build_basic_info(_get_command('del',item));
 	var request = build_dfl_request(basic, p);
@@ -140,6 +140,7 @@ function item_delete_submit(e)
 function confirm_remove_item()
 {
 	console.log($(this).data("pid"));
+	console.log($(this).data("item"));
 	var d = new Object();
 	d.pid = $(this).data("pid");
 	d.item = $(this).data("item");
@@ -169,7 +170,7 @@ function show_item(item)
 	append_left(btn);
 	btn = make_link_button(_get_target_page('mod',item),  'MOD', _get_button_name('mod',item));
 	append_left(btn);
-	btn = make_link_button('#', 'DEL', _get_button_name('del',item));
+	btn = make_action_button(_get_button_name('del',item), 'DEL');
 	append_left(btn);
 	append_left('<hr>');
 	r.done(
@@ -215,11 +216,11 @@ function show_item(item)
 			// make right
 			rcode = make_item_data(item_list[selected_item_index]);
 			append_right(rcode);
-
-			$("#"+_get_button_name('mod')).attr("href", _get_target_page('mod')+"?" + item + "="+item_list[selected_item_index]['name']);
-			$("#"+ _get_button_name('del')).attr("data-pid", item_list[selected_item_index]['name']);
-			$("#"+ _get_button_name('del')).attr("data-item", item);
-			$("#"+ _get_button_name('del')).click(confirm_remove_item);
+			console.log('----');
+			$("#"+_get_button_name('mod', item)).attr("href", _get_target_page('mod',item)+"?" + item + "="+item_list[selected_item_index]['name']);
+			$("#"+ _get_button_name('del', item)).attr("data-pid", item_list[selected_item_index]['name']);
+			$("#"+ _get_button_name('del', item)).attr("data-item", item);
+			$("#"+ _get_button_name('del', item)).click(confirm_remove_item);
 		}
 	);
 	r.fail( function(hr, textStatus){ console.log('connection fail') } );
@@ -237,6 +238,7 @@ function item_mod_submit(event)
 	// 수집
 	p['name'] = event.data.name;
 	p['desc'] = event.data.desc;
+	
 	console.log(p['name']);
 	console.log(p['desc']);
 
@@ -308,7 +310,7 @@ function show_mod_item(item)
 
 					
 					code = code + make_form_each(item_param);
-					code = code + make_action_button(_get_button_name('mod',item), 'MODIFY');
+					code = code + '<div>'+make_action_button(_get_button_name('mod',item), 'MODIFY')+'</div>';
 					
 					$("#right_frame").append(code);
 					var msg = new Object();
@@ -346,6 +348,7 @@ function show_add_item(item)
 	r = normal_call('../cgi/api.cgi', request_str);
 	
 	set_body_title(_get_body_title('add', item), "");
+
 	r.done(
 		function(data){
 			console.log(data);
@@ -359,7 +362,7 @@ function show_add_item(item)
 			code = code + make_form_text(item+' Name', item+'name','');
 			code = code + make_form_text(item+' description', item+'desc','');
 			code = code + make_form_each(param_list);
-			code = code + make_action_button(_get_button_name('add',item), 'ADD');
+			code = code + '<div>'+make_action_button(_get_button_name('add',item), 'ADD') + '</div>';
 
 			$("#right_frame").append(code);
 			var msg = new Object();

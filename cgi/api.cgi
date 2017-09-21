@@ -30,6 +30,7 @@ class Specapi(Protocol):
         _map = {}
 
         _map['GetParamRequest'] = ['GetParamResponse', self.GetParamRequest]
+        _map['GetItemListRequest'] = ['GetItemListResponse', self.GetItemListRequest]
 
         _map['GetPlatformRequest'] = ['GetPlatformResponse', self.GetPlatformRequest]
         _map['AddPlatformRequest'] = ['AddPlatformResponse', self.AddPlatformRequest]
@@ -48,6 +49,12 @@ class Specapi(Protocol):
         _map['DelHousingRequest'] = ['DelHousingResponse', self.DelHousingRequest]
         _map['GetHousingDataRequest'] = ['GetHousingDataResponse', self.GetHousingDataRequest]
         _map['ModifyHousingRequest'] = ['ModifyHousingResponse', self.ModifyHousingRequest]
+
+        _map['GetModelRequest'] = ['GetModelResponse', self.GetModelRequest]
+        _map['AddModelRequest'] = ['AddModelResponse', self.AddModelRequest]
+        _map['DelModelRequest'] = ['DelModelResponse', self.DelModelRequest]
+        _map['GetModelDataRequest'] = ['GetModelDataResponse', self.GetModelDataRequest]
+        _map['ModifyModelRequest'] = ['ModifyModelResponse', self.ModifyModelRequest]
 
 
         return _map
@@ -101,7 +108,7 @@ class Specapi(Protocol):
         item_data = self.load_json_file(fname)
         for i in item_data[item]:
             if i['name'] == self.properties[item]:
-                self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '',p)
+                self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '',i)
                 return
         self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, 'no such platform name');
         return
@@ -110,13 +117,28 @@ class Specapi(Protocol):
         j = self.load_json_file(fname)
         self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
         return
-
+    def get_name_array(self, li):
+        al = []
+        for l in li:
+            al.append(l['name'])
+        return al
 
     def GetParamRequest(self):
         j = self.load_json_file(PARAM_FILE)
         self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
         return 
-
+    def GetItemListRequest(self):
+        p = {}
+        j = self.load_json_file(PLATFORM_FILE)
+        p['platform'] = self.get_name_array(j['platform'])
+        j = self.load_json_file(SENSOR_FILE)
+        p['sensor'] = self.get_name_array(j['sensor'])
+        j = self.load_json_file(HOUSING_FILE)
+        p['housing'] = self.get_name_array(j['housing'])
+        j = self.load_json_file(MODEL_FILE)
+        p['model'] = self.get_name_array(j['model'])
+        self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', p)
+        
     def GetPlatformRequest(self):
         self._get_item('platform')
     def AddPlatformRequest(self):
@@ -151,6 +173,17 @@ class Specapi(Protocol):
         self._get_item_data('housing')
     def ModifyHousingRequest(self):
         self._mod_item('housing')
+
+    def GetModelRequest(self):
+        self._get_item('model')
+    def AddModelRequest(self):
+        self._add_item('model')
+    def DelModelRequest(self):
+        self._del_item('model')
+    def GetModelDataRequest(self):
+        self._get_item_data('model')
+    def ModifyModelRequest(self):
+        self._mod_item('model')
 
 def main():
     specapi = Specapi()
