@@ -12,7 +12,7 @@ from cgiheader import *
 from common import *
 import session
 from time import localtime,strftime
-
+import os
 
 class Specapi(Protocol):
     def __init__(self):
@@ -21,6 +21,8 @@ class Specapi(Protocol):
 
         self.response = ''
 
+        
+        
     def dispatcher(self):
         self.command_map[self.command][1]()
         
@@ -40,101 +42,115 @@ class Specapi(Protocol):
         _map['DelSensorRequest'] = ['DelSensorResponse', self.DelSensorRequest]
         _map['GetSensorDataRequest'] = ['GetSensorDataResponse', self.GetSensorDataRequest]
         _map['ModifySensorRequest'] = ['ModifySensorResponse', self.ModifySensorRequest]
-        return _map
-    
-    def GetPlatformRequest(self):
-        j = self.load_json_file(PLATFORM_FILE)
-        self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
-        return
-    def GetParamRequest(self):
-        j = self.load_json_file(PARAM_FILE)
-        self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
-        return
-    def AddPlatformRequest(self):
-        platform = self.load_json_file(PLATFORM_FILE)
-        name = ''
 
-        for p in platform["platform"]:
-            if p["name"] == self.properties['name']:
+        _map['GetHousingRequest'] = ['GetHousingResponse', self.GetHousingRequest]
+        _map['AddHousingRequest'] = ['AddHousingResponse', self.AddHousingRequest]
+        _map['DelHousingRequest'] = ['DelHousingResponse', self.DelHousingRequest]
+        _map['GetHousingDataRequest'] = ['GetHousingDataResponse', self.GetHousingDataRequest]
+        _map['ModifyHousingRequest'] = ['ModifyHousingResponse', self.ModifyHousingRequest]
+
+
+        return _map
+    def _get_file(self, item):
+        if item == 'sensor':
+            return SENSOR_FILE
+        elif item == 'housing':
+            return HOUSING_FILE
+        elif item == 'platform':
+            return PLATFORM_FILE
+        elif item == 'model':
+            return MODEL_FILE
+        
+    def _add_item(self, item):
+        fname = self._get_file(item)
+        item_list = self.load_json_file(fname)
+        
+        for i in item_list[item]:
+            if i["name"] == self.properties['name']:
                 self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
                 return
-        platform["platform"].append(self.properties)
-        self.save_json_file(PLATFORM_FILE, platform)
+        item_list[item].append(self.properties)
+        self.save_json_file(fname, item_list)
         self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "succ")
         return
-    def DelPlatformRequest(self):
-        platform = self.load_json_file(PLATFORM_FILE)
-        for i in xrange(len(platform["platform"])):
-            if platform["platform"][i]["name"] == self.properties['platform']:
-                platform["platform"].pop(i)
-                self.save_json_file(PLATFORM_FILE, platform)
+    def _del_item(self, item):
+        fname = self._get_file(item)
+        item_list = self.load_json_file(fname)
+        for i in xrange(len(item_list[item])):
+            if item_list[item][i]["name"] == self.properties[item]:
+                item_list[item].pop(i)
+                self.save_json_file(fname, item_list)
                 self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "success")
                 return
         self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, "no such platform name")
         return
-    def ModifyPlatformRequest(self):
-        platform = self.load_json_file(PLATFORM_FILE)
-        for i in xrange(len(platform["platform"])):
-            if platform['platform'][i]['name'] == self.properties['name']:
-                platform["platform"][i] = self.properties
-                self.save_json_file(PLATFORM_FILE, platform)
+    def _mod_item(self, item):
+        fname = self._get_file(item)
+        item_list = self.load_json_file(fname)
+
+        for i in xrange(len(item_list[item])):
+            if item_list[item][i]['name'] == self.properties['name']:
+                item_list[item][i] = self.properties
+                self.save_json_file(fname, item_list)
                 self.response = self.make_simple_response( RESPONSE_CODE_SUCC, '')
                 return
         self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, '')     
-    def GetPlatformDataRequest(self):
-        platform_data = self.load_json_file(PLATFORM_FILE)
-        for p in platform_data['platform']:
-            if p['name'] == self.properties['platform']:
+        
+    def _get_item_data(self, item):
+        fname = self._get_file(item)
+        item_data = self.load_json_file(fname)
+        for i in item_data[item]:
+            if i['name'] == self.properties[item]:
                 self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '',p)
                 return
         self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, 'no such platform name');
         return
-
-
-    def GetSensorRequest(self):
-        j = self.load_json_file(SENSOR_FILE)
+    def _get_item(self, item):
+        fname = self._get_file(item)
+        j = self.load_json_file(fname)
         self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
         return
+
+
+    def GetParamRequest(self):
+        j = self.load_json_file(PARAM_FILE)
+        self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '', j)
+        return 
+
+    def GetPlatformRequest(self):
+        self._get_item('platform')
+    def AddPlatformRequest(self):
+        self._add_item('platform')
+    def DelPlatformRequest(self):
+        self._del_item('platform')
+    def ModifyPlatformRequest(self):
+        self._mod_item('platform')
+    def GetPlatformDataRequest(self):
+        self._get_item_data('platform')
+
+        
+    def GetSensorRequest(self):
+        self._get_item('sensor')
     def AddSensorRequest(self):
-        sensor = self.load_json_file(SENSOR_FILE)
-        name = ''
-
-        for p in sensor["sensor"]:
-            if p["name"] == self.properties['name']:
-                self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_ALREADY_EXISTS, "member already exists")
-                return
-        sensor["sensor"].append(self.properties)
-        self.save_json_file(SENSOR_FILE, sensor)
-        self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "succ")
-        return
+        self._add_item('sensor')
     def DelSensorRequest(self):
-        sensor = self.load_json_file(SENSOR_FILE)
-        for i in xrange(len(sensor["sensor"])):
-            if sensor["sensor"][i]["name"] == self.properties['sensor']:
-                sensor["sensor"].pop(i)
-                self.save_json_file(SENSOR_FILE, sensor)
-                self.response = self.make_simple_response( RESPONSE_CODE_SUCC, "success")
-                return
-        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, "no such sensor name")
-        return
+        self._del_item('sensor')
     def GetSensorDataRequest(self):
-        sensor_data = self.load_json_file(SENSOR_FILE)
-        for p in sensor_data['sensor']:
-            if p['name'] == self.properties['sensor']:
-                self.response = self.make_custom_response( RESPONSE_CODE_SUCC, '',p)
-                return
-        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, 'no such sensor name');
-        return
+        self._get_item_data('sensor')
     def ModifySensorRequest(self):
-        sensor = self.load_json_file(SENSOR_FILE)
-        for i in xrange(len(sensor["sensor"])):
-            if sensor['sensor'][i]['name'] == self.properties['name']:
-                sensor["sensor"][i] = self.properties
-                self.save_json_file(SENSOR_FILE, sensor)
-                self.response = self.make_simple_response( RESPONSE_CODE_SUCC, '')
-                return
-        self.response = self.make_simple_response( RESPONSE_CODE_MEMBER_NO_SUCH_ID, '')     
+        self._mod_item('sensor')
 
+        
+    def GetHousingRequest(self):
+        self._get_item('housing')
+    def AddHousingRequest(self):
+        self._add_item('housing')
+    def DelHousingRequest(self):
+        self._del_item('housing')
+    def GetHousingDataRequest(self):
+        self._get_item_data('housing')
+    def ModifyHousingRequest(self):
+        self._mod_item('housing')
 
 def main():
     specapi = Specapi()
