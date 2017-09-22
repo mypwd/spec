@@ -167,7 +167,7 @@
 		{
 			"name":"videoout",
 			"title":"Video Out",
-			"param":["1[CVBS 1.0V p-p(75ohm)", "N/A"],
+			"param":["1 CVBS 1.0V p-p(75ohm)", "N/A"],
 			"type":"radio"
 		},
 		{
@@ -268,6 +268,12 @@
 		}
 	],
 	"model":[
+		{
+			"name":"oem",
+			"title":"OEM",
+			"param":["DW","JSS"],
+			"type":"radio"
+		},
 		{
 			"name":"irleds",
 			"title":"IR Leds",
