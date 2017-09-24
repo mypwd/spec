@@ -234,8 +234,8 @@
 		{
 			"name":"simpleresolution",
 			"title":"Sensor simple resolution",
-			"param":"",
-			"type":"text",
+			"param":["2MP~3MP", "4MP~5MP", "4K, 8MP", "over 8MP"],
+			"type":"radio",
 			"placeholder":"4MP"
 		},
 		{
