@@ -114,6 +114,13 @@ function make_link_button(target, name, id)
 	code = '<a class="btn btn-primary btn-sm" href="./' + target + '" role="button" id="'+id+'">'+name + '</a>&nbsp;';
 	return code;
 }
+function make_link_button_blank(target, name, id)
+{
+	var code;
+	code = '<a class="btn btn-primary btn-sm" href="./' + target + '" role="button" target="_blank" id="'+id+'">'+name + '</a>&nbsp;';
+	return code;
+}
+
 function make_form_radio_inline(title, name, radioarray)
 {
 	return make_form_radiocheck_inline(title, name, radioarray, 'radio');
@@ -164,7 +171,7 @@ function make_action_button(id, name)
 	var code;
 	code = '<button type="button" class="btn btn-primary btn-sm" id="'
 		+ id + '">'
-		+ name + '</button>';
+		+ name + '</button>&nbsp;';
 	return code;
 }
 //////////////////////////////////////////////////
